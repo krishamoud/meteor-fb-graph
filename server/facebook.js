@@ -30,10 +30,14 @@ Meteor.methods({
     },
     getFriendsData: function() {   
     var fb = new Facebook(Meteor.user().services.facebook.accessToken);
-    var data = fb.getFriendsData();
+    var data = fb.getFriends();
     return data;
     }
 });
 Facebook.prototype.getFriendsData = function() {
     return this.query('/me/friendlists');
+}
+
+Facebook.prototype.getFriends = function(){
+	return this.query('/me/friends');
 }
